@@ -6,6 +6,7 @@ Release:	1
 License:	GPL
 Group:		X11/Applications/Games
 Source0:	http://student.uci.agh.edu.pl/~gotar/%{name}-20030412.tar.bz2
+# Source0-md5:	5cd33fdf89ecba703af435ee719c08e8
 URL:		http://icculus.org/duke3d/
 ExclusiveArch:	%{ix86}
 BuildRequires:	SDL_mixer-devel
