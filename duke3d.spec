@@ -11,8 +11,6 @@ ExclusiveArch:	%{ix86}
 BuildRequires:	SDL_mixer-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_bindir	%{_prefix}/games
-
 %description
 Duke Nukem 3D.
 
