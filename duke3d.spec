@@ -9,16 +9,15 @@ Source0:	%{name}-20030404.tar.bz2
 URL:		http://icculus.org/duke3d/
 ExclusiveArch:	%{ix86}
 BuildRequires:	SDL_mixer-devel
+BuildRequires:	nasm
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Duke Nukem 3D.
-
 You will need files from Atomic Edition to run this game.
 
 %description -l pl
 Duke Nukem 3D.
-
 Aby uruchomiæ grê wymagane s± pliki z Atomic Edition.
 
 %prep
@@ -32,7 +31,7 @@ cd source/buildengine
 cd ..
 %{__make} \
 	CC="%{__cc}" \
-	CFLAGS="%{rpmcflags} `sdl-config --cflags` -DUSE_SDL=1 -DPLATFORM_UNIX=1 -DUSE_I386_ASM=1"
+	CFLAGS="%{rpmcflags} `sdl-config --cflags` -DUSE_I386_ASM=1 -DPLATFORM_UNIX=1 -DUSE_SDL=1"
 
 %install
 rm -rf $RPM_BUILD_ROOT
