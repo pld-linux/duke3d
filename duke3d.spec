@@ -2,11 +2,11 @@ Summary:	Duke Nukem 3D
 Summary(pl):	Duke Nukem 3D
 Name:		duke3d
 Version:	1.5
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications/Games
-Source0:	%{name}-20030909.tar.bz2
-# Source0-md5:	c8e9660eb7be0df459079c8837212bf8
+Source0:	%{name}-20030928.tar.bz2
+# Source0-md5:	35fe7c0607b00f1750ca764cc513b972
 URL:		http://icculus.org/duke3d/
 Patch0:		%{name}-opt.patch
 ExclusiveArch:	%{ix86}
