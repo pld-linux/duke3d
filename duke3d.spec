@@ -5,7 +5,7 @@ Version:	1.5
 Release:	1
 License:	GPL
 Group:		X11/Applications/Games
-Source0:	%{name}-20030404.tar.bz2
+Source0:	http://student.uci.agh.edu.pl/~gotar/%{name}-20030412.tar.bz2
 URL:		http://icculus.org/duke3d/
 ExclusiveArch:	%{ix86}
 BuildRequires:	SDL_mixer-devel
@@ -27,11 +27,11 @@ Aby uruchomiæ grê wymagane s± pliki z Atomic Edition.
 cd source/buildengine
 %{__make} \
 	CC="%{__cc}" \
-	CFLAGS="%{rpmcflags} `sdl-config --cflags` -DUSE_I386_ASM -DPLATFORM_UNIX -fasm -fno-omit-frame-pointer -funsigned-char"
+	CFLAGS="%{rpmcflags} `sdl-config --cflags` -DUDP_NETWORKING=1 -DUSE_I386_ASM -DPLATFORM_UNIX -fno-omit-frame-pointer -funsigned-char"
 cd ..
 %{__make} \
 	CC="%{__cc}" \
-	CFLAGS="%{rpmcflags} `sdl-config --cflags` -DUSE_I386_ASM=1 -DPLATFORM_UNIX=1 -DUSE_SDL=1"
+	CFLAGS="%{rpmcflags} `sdl-config --cflags` -DUSE_SDL=1 -DPLATFORM_UNIX=1 -DUSE_EXECINFO=1 -funsigned-char"
 
 %install
 rm -rf $RPM_BUILD_ROOT
