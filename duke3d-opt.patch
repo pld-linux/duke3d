@@ -1,0 +1,22 @@
+diff -urN duke3d.orig/source/Makefile duke3d/source/Makefile
+--- duke3d.orig/source/Makefile	2003-06-23 12:59:13.000000000 +0200
++++ duke3d/source/Makefile	2003-09-09 20:29:02.000000000 +0200
+@@ -87,8 +87,7 @@
+ endif
+ 
+ CC = gcc
+-CFLAGS = -c -g $(SDL_CFLAGS) -DUSE_SDL=1 -DPLATFORM_UNIX=1 -W -Wall -Wno-unused $(EXTRACFLAGS) -funsigned-char
+-OPTIMIZE = -O2
++CFLAGS = -c $(SDL_CFLAGS) -DUSE_SDL=1 -DPLATFORM_UNIX=1 -W -Wall -Wno-unused $(EXTRACFLAGS) -funsigned-char
+ 
+ # Uncomment this to compile with the Intel compiler (v6.0)
+ #CC = icc
+@@ -103,7 +102,7 @@
+ 
+ 
+ %.o : %.c
+-	$(CC) $(CFLAGS) $(OPTIMIZE) -o $@ $<
++	$(CC) $(CFLAGS) -o $@ $<
+ 
+ # Animation playback crashes due to optimization error on MacOS X. --ryan.
+ ifeq ($(strip $(macosx)),true)
