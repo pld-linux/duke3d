@@ -1,5 +1,5 @@
 Summary:	Duke Nukem 3D
-Summary(pl.UTF-8):   Duke Nukem 3D
+Summary(pl.UTF-8):	Duke Nukem 3D
 Name:		duke3d
 Version:	1.5
 Release:	2
