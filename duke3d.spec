@@ -1,5 +1,5 @@
 Summary:	Duke Nukem 3D
-Summary(pl):	Duke Nukem 3D
+Summary(pl.UTF-8):   Duke Nukem 3D
 Name:		duke3d
 Version:	1.5
 Release:	2
@@ -18,9 +18,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Duke Nukem 3D.
 You will need files from Atomic Edition to run this game.
 
-%description -l pl
+%description -l pl.UTF-8
 Duke Nukem 3D.
-Aby uruchomiæ grê wymagane s± pliki z Atomic Edition.
+Aby uruchomiÄ‡ grÄ™ wymagane sÄ… pliki z Atomic Edition.
 
 %prep
 %setup -q -n %{name}
