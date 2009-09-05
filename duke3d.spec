@@ -1,15 +1,18 @@
+%define		ver 	032696
+%define		rel		0.1
 Summary:	Duke Nukem 3D
 Summary(pl.UTF-8):	Duke Nukem 3D
 Name:		duke3d
 Version:	1.5
-Release:	2
+Release:	0.%{ver}.%{rel}
 License:	GPL
 Group:		X11/Applications/Games
-Source0:	%{name}-20030928.tar.bz2
-# Source0-md5:	35fe7c0607b00f1750ca764cc513b972
+Source0:	%{name}.tar.bz2
+# Source0-md5:	1fce8602af6e3dcdfd63307993643e75
 Patch0:		%{name}-opt.patch
 URL:		http://icculus.org/duke3d/
 BuildRequires:	SDL_mixer-devel
+BuildRequires:	SDL-devel
 BuildRequires:	nasm
 ExclusiveArch:	%{ix86}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -28,24 +31,29 @@ Aby uruchomić grę wymagane są pliki z Atomic Edition.
 %setup -q -n %{name}
 %patch0 -p1
 
+ver=$(awk -F'"' '/DUKE NUKEM BUILD/{a=$(NF-1); sub(/.*: V/, "", a); print a}' source/astub.c)
+if [ "$ver" != %{ver} ]; then
+	exit 1
+fi
+
 %build
 %{__make} -C source/buildengine \
 	CC="%{__cc}" \
-	CFLAGS="%{rpmcflags} `sdl-config --cflags` -DUDP_NETWORKING=1 -DPLATFORM_UNIX -fno-omit-frame-pointer -funsigned-char"
+	OPTIMIZE="%{rpmcflags} -fno-omit-frame-pointer -funsigned-char"
 
-%{__make} \
+%{__make} -C source \
 	CC="%{__cc}" \
-	CFLAGS="%{rpmcflags} `sdl-config --cflags` -DUSE_SDL=1 -DPLATFORM_UNIX=1 -DUSE_EXECINFO=1 -funsigned-char -c"
+	OPTIMIZE="%{rpmcflags} -funsigned-char"
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/duke3d}
 
 install source/duke3d $RPM_BUILD_ROOT%{_bindir}
-install testdata/defs.con $RPM_BUILD_ROOT%{_datadir}/duke3d/DEFS.CON
-install testdata/game.con $RPM_BUILD_ROOT%{_datadir}/duke3d/GAME.CON
-install testdata/user.con $RPM_BUILD_ROOT%{_datadir}/duke3d/USER.CON
-install testdata/lookup.dat $RPM_BUILD_ROOT%{_datadir}/duke3d/LOOKUP.DAT
+cp -a testdata/defs.con $RPM_BUILD_ROOT%{_datadir}/duke3d/DEFS.CON
+cp -a testdata/game.con $RPM_BUILD_ROOT%{_datadir}/duke3d/GAME.CON
+cp -a testdata/user.con $RPM_BUILD_ROOT%{_datadir}/duke3d/USER.CON
+cp -a testdata/lookup.dat $RPM_BUILD_ROOT%{_datadir}/duke3d/LOOKUP.DAT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -53,5 +61,5 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc readme.txt
-%attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_bindir}/duke3d
 %{_datadir}/duke3d
