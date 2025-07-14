@@ -29,7 +29,7 @@ Aby uruchomić grę wymagane są pliki z Atomic Edition.
 
 %prep
 %setup -q -n %{name}
-%patch0 -p1
+%patch -P0 -p1
 
 ver=$(awk -F'"' '/DUKE NUKEM BUILD/{a=$(NF-1); sub(/.*: V/, "", a); print a}' source/astub.c)
 if [ "$ver" != %{ver} ]; then
